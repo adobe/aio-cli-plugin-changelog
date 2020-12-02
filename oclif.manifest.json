@@ -1,0 +1,1 @@
+{"version":"0.0.0","commands":{"changelog":{"id":"changelog","description":"Your description here","changelog":"@adobe/aio-cli-plugin-changelog","pluginType":"core","aliases":[],"examples":["$ aio changelog:some_command"],"flags":{"someflag":{"name":"someflag","type":"option","char":"f","description":"this is some flag"}},"args":[]}}}

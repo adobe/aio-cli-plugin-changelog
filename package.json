@@ -1,0 +1,100 @@
+{
+  "name": "@adobe/aio-cli-plugin-changelog",
+  "version": "0.0.0",
+  "dependencies": {
+    "@adobe/aio-lib-core-config": "^2.0.0",
+    "@adobe/aio-lib-core-logging": "^1.1.0",
+    "@oclif/command": "^1.8.0",
+    "@octokit/graphql": "^4.5.7",
+    "@octokit/rest": "^18.0.9",
+    "date-fns": "^2.16.1",
+    "lodash": "^4.17.20"
+  },
+  "devDependencies": {
+    "@adobe/eslint-config-aio-lib-config": "^1.2.0",
+    "@oclif/config": "^1.17.0",
+    "@oclif/dev-cli": "^1",
+    "@oclif/errors": "^1.3.4",
+    "@oclif/plugin-help": "^2",
+    "acorn": "^7",
+    "babel-eslint": "^10.1.0",
+    "chalk": "^4",
+    "eslint": "^6.8.0",
+    "eslint-config-oclif": "^3.1.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-flowtype": "^5.2.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jest": "^23.13.2",
+    "eslint-plugin-jsdoc": "^21.0.0",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "execa": "^4",
+    "flow-bin": "^0.63.1",
+    "flow-coverage-report": "^0.4.0",
+    "flow-remove-types": "^1.2.3",
+    "flow-typed": "^2.2.3",
+    "jest": "^24",
+    "jest-haste-map": "^24.5.0",
+    "jest-junit": "^6.0.0",
+    "jest-resolve": "^24.5.0",
+    "module-alias": "^2.2.2",
+    "nodemon": "^1.11.0",
+    "stdout-stderr": "^0.1.9",
+    "watch": "^1.0.2"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/oclif.manifest.json",
+    "/src"
+  ],
+  "keywords": [
+    "oclif-plugin"
+  ],
+  "license": "Apache-2.0",
+  "oclif": {
+    "commands": "./src/commands",
+    "bin": "aio",
+    "devPlugins": [
+      "@oclif/plugin-help"
+    ],
+    "repositoryPrefix": "<%- repo %>/blob/<%- version %>/<%- commandPath %>"
+  },
+  "main": "src/index.js",
+  "scripts": {
+    "pretest": "eslint src test e2e",
+    "test": "npm run unit-tests",
+    "unit-tests": "jest --ci",
+    "prepack": "oclif-dev manifest && oclif-dev readme",
+    "postpack": "rm -f oclif.manifest.json",
+    "version": "oclif-dev readme && git add README.md",
+    "e2e": "jest --collectCoverage=false --testRegex './e2e/e2e.js'",
+    "flow": "flow",
+    "flow:coverage": "flow-coverage-report --config .flowcoverage.json",
+    "flow:remove:types": "flow-remove-types ./src-flow -d ./src/ --all --extensions .js --ignore /flow-typed/",
+    "flow:build": "npm run flow:remove:types & npm run eslint:fix",
+    "eslint:fix": "eslint --fix .",
+    "flow:check": "flow check ./src-flow/",
+    "flow:deps": "flow-typed install",
+    "dev": "watch 'npm run flow:check & npm run flow:build' ./src-flow/"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "testPathIgnorePatterns": [
+      "<rootDir>/tests/fixtures/"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/tests/fixtures/"
+    ],
+    "reporters": [
+      "default",
+      "jest-junit"
+    ],
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "./jest.setup.js"
+    ]
+  }
+}

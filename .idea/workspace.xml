@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c7bdd892-7f4e-42d3-abae-dcbe93349f03" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src-flow/.flowconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src-flow/application/api/changelog-interface.js.flow" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src-flow/application/api/data/pullrequest.js.flow" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src-flow/application/api/file-manager-interface.js.flow" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src-flow/application/api/filter-interface.js.flow" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src-flow/application/api/loader-interface.js.flow" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src-flow/application/api/processor-interface.js.flow" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src-flow/application/api/writer-interface.js.flow" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src-flow/application/command-generator.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src-flow/application/filter-manager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src-flow/application/filters/labels.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src-flow/application/loader-manager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src-flow/application/loaders/pullrequest.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src-flow/application/params-to-config-converter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src-flow/application/processor.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src-flow/commands/changelog/index.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="ProjectId" id="1kX9R4q0w7MlPITRSbY7agEHJ0C" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="js.linters.configure.manually.selectedeslint" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src-flow/application/api" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.selected.package.eslint" value="$PROJECT_DIR$/node_modules/eslint" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JavaScript" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src-flow/application/api" />
+      <recent name="$PROJECT_DIR$/src-flow/application/services" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/app/commands" />
+      <recent name="$PROJECT_DIR$/src/app" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src-flow/commands/changelog" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/source" />
+      <recent name="$PROJECT_DIR$/src/source/app" />
+      <recent name="$PROJECT_DIR$/src/app" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="prepack" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="prepack" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.prepack" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SshConsoleOptionsProvider">
+    <option name="myEncoding" value="UTF-8" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c7bdd892-7f4e-42d3-abae-dcbe93349f03" name="Default Changelist" comment="" />
+      <created>1605836058364</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1605836058364</updated>
+      <workItem from="1605836059593" duration="6368000" />
+      <workItem from="1606110517857" duration="12646000" />
+      <workItem from="1606186291202" duration="66000" />
+      <workItem from="1606186369139" duration="13000" />
+      <workItem from="1606186402324" duration="69000" />
+      <workItem from="1606186487190" duration="39000" />
+      <workItem from="1606186540637" duration="216000" />
+      <workItem from="1606186768953" duration="176000" />
+      <workItem from="1606186957695" duration="24881000" />
+      <workItem from="1606333331324" duration="970000" />
+      <workItem from="1606334353500" duration="2653000" />
+      <workItem from="1606337531377" duration="41388000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="702" y="396" key="#ESLint" timestamp="1606334319552">
+      <screen x="0" y="23" width="1680" height="949" />
+    </state>
+    <state x="702" y="396" key="#ESLint/0.23.1680.949@0.23.1680.949" timestamp="1606334319552" />
+    <state x="522" y="306" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606187035812">
+      <screen x="0" y="23" width="1680" height="952" />
+    </state>
+    <state x="522" y="306" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1680.952@0.23.1680.952" timestamp="1606187035812" />
+    <state width="1638" height="254" key="GridCell.Tab.0.bottom" timestamp="1606086793351">
+      <screen x="0" y="23" width="1680" height="965" />
+    </state>
+    <state width="1638" height="254" key="GridCell.Tab.0.bottom/0.23.1680.960@0.23.1680.960" timestamp="1605849757404" />
+    <state width="1638" height="254" key="GridCell.Tab.0.bottom/0.23.1680.965@0.23.1680.965" timestamp="1606086793351" />
+    <state width="1638" height="254" key="GridCell.Tab.0.center" timestamp="1606086793348">
+      <screen x="0" y="23" width="1680" height="965" />
+    </state>
+    <state width="1638" height="254" key="GridCell.Tab.0.center/0.23.1680.960@0.23.1680.960" timestamp="1605849757403" />
+    <state width="1638" height="254" key="GridCell.Tab.0.center/0.23.1680.965@0.23.1680.965" timestamp="1606086793348" />
+    <state width="1638" height="254" key="GridCell.Tab.0.left" timestamp="1606086793345">
+      <screen x="0" y="23" width="1680" height="965" />
+    </state>
+    <state width="1638" height="254" key="GridCell.Tab.0.left/0.23.1680.960@0.23.1680.960" timestamp="1605849757403" />
+    <state width="1638" height="254" key="GridCell.Tab.0.left/0.23.1680.965@0.23.1680.965" timestamp="1606086793344" />
+    <state width="1638" height="254" key="GridCell.Tab.0.right" timestamp="1606086793350">
+      <screen x="0" y="23" width="1680" height="965" />
+    </state>
+    <state width="1638" height="254" key="GridCell.Tab.0.right/0.23.1680.960@0.23.1680.960" timestamp="1605849757404" />
+    <state width="1638" height="254" key="GridCell.Tab.0.right/0.23.1680.965@0.23.1680.965" timestamp="1606086793350" />
+    <state x="341" y="135" key="SettingsEditor" timestamp="1606373823995">
+      <screen x="0" y="23" width="1680" height="952" />
+    </state>
+    <state x="341" y="135" key="SettingsEditor/0.23.1680.952@0.23.1680.952" timestamp="1606373823995" />
+    <state x="100" y="123" width="1480" height="747" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1606186944865">
+      <screen x="0" y="23" width="1680" height="952" />
+    </state>
+    <state x="100" y="123" width="1480" height="747" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.23.1680.952@0.23.1680.952" timestamp="1606186944865" />
+    <state x="100" y="123" width="1480" height="747" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606268798376">
+      <screen x="0" y="23" width="1680" height="952" />
+    </state>
+    <state x="100" y="123" width="1480" height="747" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1680.952@0.23.1680.952" timestamp="1606268798376" />
+    <state x="541" y="249" width="598" height="492" key="find.popup" timestamp="1606799432028">
+      <screen x="0" y="23" width="1680" height="954" />
+    </state>
+    <state x="541" y="248" width="598" height="490" key="find.popup/0.23.1680.949@0.23.1680.949" timestamp="1606334420457" />
+    <state x="541" y="249" width="598" height="490" key="find.popup/0.23.1680.952@0.23.1680.952" timestamp="1606379279874" />
+    <state x="541" y="249" width="598" height="492" key="find.popup/0.23.1680.954@0.23.1680.954" timestamp="1606799432028" />
+    <state x="541" y="250" width="598" height="493" key="find.popup/0.23.1680.956@0.23.1680.956" timestamp="1606758920121" />
+    <state x="541" y="251" width="598" height="490" key="find.popup/0.23.1680.960@0.23.1680.960" timestamp="1605850209769" />
+    <state x="505" y="230" width="670" height="678" key="search.everywhere.popup" timestamp="1606803833703">
+      <screen x="0" y="23" width="1680" height="954" />
+    </state>
+    <state x="505" y="229" width="670" height="674" key="search.everywhere.popup/0.23.1680.949@0.23.1680.949" timestamp="1606334383751" />
+    <state x="505" y="230" width="670" height="676" key="search.everywhere.popup/0.23.1680.952@0.23.1680.952" timestamp="1606378649936" />
+    <state x="505" y="230" width="670" height="678" key="search.everywhere.popup/0.23.1680.954@0.23.1680.954" timestamp="1606803833703" />
+    <state x="570" y="405" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1605836085245">
+      <screen x="0" y="23" width="1680" height="960" />
+    </state>
+    <state x="570" y="405" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.23.1680.960@0.23.1680.960" timestamp="1605836085245" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src-flow/commands/changelog/index.js</url>
+          <line>70</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
