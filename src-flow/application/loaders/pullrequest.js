@@ -6,25 +6,28 @@ import type { graphql } from '@octokit/graphql'
 const formatFns = require('date-fns/format')
 
 class PullRequestLoader implements LoaderInterface {
-  client: graphql
+  githubGraphQlClient: graphql
   filters: Array<FilterInterface>
+  groupBy:Object
   constructor (
-    githubClient: graphql,
-    filters:Array<FilterInterface> = []
+    githubService: graphql,
+    filters:Array<FilterInterface> = [],
+    groupBy = {}
   ) {
-    this.client = githubClient
+    this.githubGraphQlClient = githubService.getGraphQlClient()
     this.filters = filters
+    this.groupBy = groupBy
   }
 
   async execute (
     organization:string,
     repository:string,
-    from:number,
-    to:number
+    from:Date,
+    to:Date
   ):Promise<Array<PullRequestData>> {
     const formatPattern = 'yyyy-MM-dd'
-    const sdate = formatFns(from, formatPattern)
-    const edate = formatFns(to, formatPattern)
+    const sdate = formatFns(from.getTime(), formatPattern)
+    const edate = formatFns(to.getTime(), formatPattern)
     let cursor = null
     let hasNextPage = null
     let after = ''
@@ -68,7 +71,7 @@ class PullRequestLoader implements LoaderInterface {
         }
       }`
 
-      response = await this.client(query)
+      response = await this.githubGraphQlClient(query)
       hasNextPage = false// response.search.pageInfo.hasNextPage
       cursor = response.search.pageInfo.endCursor
       result = [...result, ...response.search.nodes]
@@ -84,9 +87,12 @@ class PullRequestLoader implements LoaderInterface {
         pr.author.__typename === 'User'
     )
 
-    console.log(result[0].labels.nodes)
     for (const filter of this.filters) {
       result = filter.execute(result)
+    }
+
+    if (this.groupBy) {
+      result = this.groupBy.execute(result)
     }
 
     return result

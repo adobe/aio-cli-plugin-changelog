@@ -15,72 +15,90 @@ import type { FilterInterface } from '../../application/api/filter-interface.js.
 import type { PullRequestData } from '../../application/api/data/pullrequest.js.flow'
 
 const { Command, flags } = require('@oclif/command')
-const config = require('@adobe/aio-lib-core-config')
-const aioLogger = require('@adobe/aio-lib-core-logging')('changelog', { provider: 'debug' })
 const loaderManager = require('../../application/loader-manager')
 const filterManager = require('../../application/filter-manager')
-const commandGenerator = require('../../application/command-generator')
-const paramsToConfigConvertor = require('../../application/params-to-config-converter')
-const { graphql } = require('@octokit/graphql')
-const Octokit = require('@octokit/rest').Octokit
+const groupManager = require('../../application/groups-manager')
+const aioConfig = require('@adobe/aio-lib-core-config')
+const ConfigService = require('../../application/services/config')
+const TagService = require('../../application/services/tag')
+const GithubService = require('../../application/services/github')
+const NamespaceConfig = require('../../application/models/namespace-config')
+const templatePR = require('../../application/templates/pullrequest-issue')
+const _ = require('lodash')
 
 class IndexCommand extends Command {
   async run () {
-    const params = this.parse(IndexCommand)
-    const paramsConfig = paramsToConfigConvertor.convert(params)
-    const localConfig = config.get('changelog') || {}
-    const token = config.get('GITHUB_TOKEN')
-    const graphqlAuthorized = graphql.defaults({ headers: { authorization: `token ${token}` } })
-    const restAuthorized = new Octokit({ auth: `token ${token}` })
-    const repositoryList = []
-
-    if (params.flags.repository && params.flags.organization) {
-      const paramsConfig = paramsToConfigConvertor.convert(params)
-      repositoryList.push()
+    const { flags, flags: { namespace } } = this.parse(IndexCommand)
+    const githubService = new GithubService(aioConfig.get('GITHUB_TOKEN'))
+    const configService = new ConfigService(githubService, aioConfig)
+    const tagService = new TagService(githubService)
+    const localConfig = await configService.getLocalConfigs(namespace, flags['config-path'], flags['path-type'])
+    const inRepoConfig = await configService.getInRepoConfigs(Object.keys(localConfig))
+    const commonConfig = _.merge(inRepoConfig, localConfig)
+    const commonConfigErrors = await configService.validate(commonConfig)
+    const result = {}
+    if (commonConfigErrors.length) {
+      throw new Error(commonConfigErrors.join('\n'))
     }
 
-    localConfig[`${params.flags.organization}/${params.flags.repository}`] || {}, paramsConfig
+    for (const np of Object.keys(commonConfig)) {
+      const namespaceConfig = new NamespaceConfig(commonConfig[np])
+      const parsedNp = configService.parseNamespace(np)
+      const tagsRange = await tagService.getTagDates(
+        namespaceConfig.getTag(),
+        parsedNp.organization,
+        parsedNp.repository
+      )
+      const Loader = loaderManager.get(namespaceConfig.getLoaderName())
+      const filtersConfig = namespaceConfig.getFilters()
+      const GroupByClass = namespaceConfig.getGroupName() ? groupManager.get(namespaceConfig.getGroupName()) : null
+      const groupBy = GroupByClass ? new GroupByClass(namespaceConfig.getGroupConfig()) : null
+      const dataLoader:LoaderInterface = new Loader(
+        githubService,
+        Object.keys(filtersConfig).map((ftr:string) => {
+          const FtrClass = filterManager.get(ftr)
+          const filter: FilterInterface = new FtrClass(filtersConfig[ftr])
+          return filter
+        }),
+        groupBy
+      )
+      for (const tagName of Object.keys(tagsRange)) {
+        const data:PullRequestData = await dataLoader.execute(
+          parsedNp.organization,
+          parsedNp.repository,
+          tagsRange[tagName].from,
+          tagsRange[tagName].to
+        )
 
-    /* if (flags.repository && flags.organization) {
-      projectConfigs.push({
-        ...(config.get(`changelog.${flags.repository}.${flags.organization}`) || {})
-
-      })
-    } */
-    const Loader = loaderManager.get('pullrequest')
-    const Filter = filterManager.get('labels')
-    const filter: FilterInterface = new Filter(['Auto-Tests: Not Required'])
-    const dataLoader:LoaderInterface = new Loader(graphqlAuthorized, [filter])
-    const data:Array<PullRequestData> = await dataLoader.execute(
-      'magento',
-      'magento2',
-      new Date('11/21/2019').getTime(),
-      new Date().getTime()
-    )
-    console.log(data)
+        result[tagName] = {
+          createdAt: tagsRange[tagName].to,
+          data: data.map(item => ({
+            ...item,
+            repository: parsedNp.repository,
+            organization: parsedNp.repository,
+            author: item.author.login
+          }))
+        }
+      }
+      console.log(templatePR(result))
+    }
   }
 }
 
 IndexCommand.flags = {
-  repository: flags.string({ char: 'rp', description: 'Repository name', dependsOn: ['organization'] }),
-  organization: flags.string({ char: 'org', description: 'Organization name', dependsOn: ['repository'] }),
-  loader: flags.string({ char: 'ld', description: 'Loader name' }),
-  template: flags.string({ char: 't', description: 'Template name' }),
-  tagFrom: flags.string({ char: 'tf', description: 'Tag from, optional' }),
-  tagTo: flags.string({ char: 'tt', description: 'Tag to, optional' }),
-  file: flags.string({ char: 'fl', description: 'Result file name', default: 'Changelog.md' }),
-  save: flags.boolean({ char: 'sv', description: 'Save params to config', default: false }),
-  override: flags.boolean({ char: 'ov', description: 'Override existed changelog.md file', default: false }),
-  config: flags.string({ char: 'fl', description: 'Local config path' }),
-  ...commandGenerator.generate(
-    'filters',
-    'filter',
-    'fl',
-    'Filter [name]',
-    {
-      multiple: true
-    }
-  )
+  'config-path': flags.string({ char: 'c', description: 'Local config path' }),
+  namespace: flags.string({
+    char: 'n',
+    description: 'Namespace, example: organization/repository:branch',
+    multiple: true,
+    default: []
+  }),
+  'path-type': flags.string({
+    char: 't',
+    description: 'Local config path type',
+    options: ['absolute', 'relative'],
+    default: 'absolute'
+  })
 }
 
 IndexCommand.description = 'Changelog generation tool'

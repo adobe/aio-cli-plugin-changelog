@@ -4,22 +4,23 @@
     <list default="true" id="c7bdd892-7f4e-42d3-abae-dcbe93349f03" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src-flow/.flowconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src-flow/application/api/changelog-interface.js.flow" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src-flow/application/api/data/pullrequest.js.flow" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src-flow/application/api/file-manager-interface.js.flow" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src-flow/application/api/filter-interface.js.flow" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src-flow/application/api/loader-interface.js.flow" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src-flow/application/api/processor-interface.js.flow" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src-flow/application/api/writer-interface.js.flow" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src-flow/application/command-generator.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src-flow/application/filter-manager.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src-flow/application/filters/labels.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src-flow/application/loader-manager.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src-flow/application/loaders/pullrequest.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src-flow/application/params-to-config-converter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src-flow/application/processor.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src-flow/commands/changelog/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src-flow/application/file-loader.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src-flow/application/group-manager.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src-flow/application/groups/labels.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src-flow/application/models/namespace-config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src-flow/application/services/config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src-flow/application/services/github.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src-flow/application/services/tag.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src-flow/application/templates/pullrequest-issue.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oclif.manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/oclif.manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src-flow/application/api/loader-interface.js.flow" beforeDir="false" afterPath="$PROJECT_DIR$/src-flow/application/api/loader-interface.js.flow" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src-flow/application/command-generator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src-flow/application/filters/labels.js" beforeDir="false" afterPath="$PROJECT_DIR$/src-flow/application/filters/labels.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src-flow/application/loader-manager.js" beforeDir="false" afterPath="$PROJECT_DIR$/src-flow/application/loader-manager.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src-flow/application/loaders/pullrequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src-flow/application/loaders/pullrequest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src-flow/application/params-to-config-converter.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src-flow/commands/changelog/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src-flow/commands/changelog/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +48,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.linters.configure.manually.selectedeslint" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src-flow/application/api" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src-flow/application" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -62,19 +63,19 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src-flow/application/api" />
-      <recent name="$PROJECT_DIR$/src-flow/application/services" />
-      <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$/src/app/commands" />
-      <recent name="$PROJECT_DIR$/src/app" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src-flow/commands/changelog" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/source" />
       <recent name="$PROJECT_DIR$/src/source/app" />
       <recent name="$PROJECT_DIR$/src/app" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src-flow/application" />
+      <recent name="$PROJECT_DIR$/src-flow/application/templates" />
+      <recent name="$PROJECT_DIR$/src-flow/application/services" />
+      <recent name="$PROJECT_DIR$/src-flow/application/api" />
+      <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
   <component name="RunManager">
@@ -116,40 +117,70 @@
       <workItem from="1606186957695" duration="24881000" />
       <workItem from="1606333331324" duration="970000" />
       <workItem from="1606334353500" duration="2653000" />
-      <workItem from="1606337531377" duration="41388000" />
+      <workItem from="1606337531377" duration="95702000" />
+      <workItem from="1607308181885" duration="13801000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial commit">
+      <created>1606887809994</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1606887809995</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
   </component>
   <component name="WindowStateProjectService">
     <state x="702" y="396" key="#ESLint" timestamp="1606334319552">
       <screen x="0" y="23" width="1680" height="949" />
     </state>
     <state x="702" y="396" key="#ESLint/0.23.1680.949@0.23.1680.949" timestamp="1606334319552" />
-    <state x="522" y="306" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606187035812">
-      <screen x="0" y="23" width="1680" height="952" />
+    <state x="522" y="307" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607103380393">
+      <screen x="0" y="23" width="1680" height="956" />
     </state>
     <state x="522" y="306" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1680.952@0.23.1680.952" timestamp="1606187035812" />
-    <state width="1638" height="254" key="GridCell.Tab.0.bottom" timestamp="1606086793351">
-      <screen x="0" y="23" width="1680" height="965" />
+    <state x="522" y="307" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1680.956@0.23.1680.956" timestamp="1607103380393" />
+    <state x="470" y="168" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1606887983246">
+      <screen x="0" y="23" width="1680" height="956" />
     </state>
+    <state x="470" y="168" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/0.23.1680.956@0.23.1680.956" timestamp="1606887983246" />
+    <state x="417" y="71" key="CommitChangelistDialog2" timestamp="1606887809138">
+      <screen x="0" y="23" width="1680" height="956" />
+    </state>
+    <state x="417" y="71" key="CommitChangelistDialog2/0.23.1680.956@0.23.1680.956" timestamp="1606887809138" />
+    <state x="0" y="23" key="FileDocumentManager.FileCacheConflict" timestamp="1606976435252">
+      <screen x="0" y="23" width="1680" height="956" />
+    </state>
+    <state x="0" y="23" key="FileDocumentManager.FileCacheConflict/0.23.1680.956@0.23.1680.956" timestamp="1606976435252" />
+    <state width="1636" height="254" key="GridCell.Tab.0.bottom" timestamp="1607319084052">
+      <screen x="0" y="23" width="1680" height="949" />
+    </state>
+    <state width="1636" height="254" key="GridCell.Tab.0.bottom/0.23.1680.949@0.23.1680.949" timestamp="1607319084052" />
     <state width="1638" height="254" key="GridCell.Tab.0.bottom/0.23.1680.960@0.23.1680.960" timestamp="1605849757404" />
     <state width="1638" height="254" key="GridCell.Tab.0.bottom/0.23.1680.965@0.23.1680.965" timestamp="1606086793351" />
-    <state width="1638" height="254" key="GridCell.Tab.0.center" timestamp="1606086793348">
-      <screen x="0" y="23" width="1680" height="965" />
+    <state width="1636" height="254" key="GridCell.Tab.0.center" timestamp="1607319084051">
+      <screen x="0" y="23" width="1680" height="949" />
     </state>
+    <state width="1636" height="254" key="GridCell.Tab.0.center/0.23.1680.949@0.23.1680.949" timestamp="1607319084051" />
     <state width="1638" height="254" key="GridCell.Tab.0.center/0.23.1680.960@0.23.1680.960" timestamp="1605849757403" />
     <state width="1638" height="254" key="GridCell.Tab.0.center/0.23.1680.965@0.23.1680.965" timestamp="1606086793348" />
-    <state width="1638" height="254" key="GridCell.Tab.0.left" timestamp="1606086793345">
-      <screen x="0" y="23" width="1680" height="965" />
+    <state width="1636" height="254" key="GridCell.Tab.0.left" timestamp="1607319084051">
+      <screen x="0" y="23" width="1680" height="949" />
     </state>
+    <state width="1636" height="254" key="GridCell.Tab.0.left/0.23.1680.949@0.23.1680.949" timestamp="1607319084051" />
     <state width="1638" height="254" key="GridCell.Tab.0.left/0.23.1680.960@0.23.1680.960" timestamp="1605849757403" />
     <state width="1638" height="254" key="GridCell.Tab.0.left/0.23.1680.965@0.23.1680.965" timestamp="1606086793344" />
-    <state width="1638" height="254" key="GridCell.Tab.0.right" timestamp="1606086793350">
-      <screen x="0" y="23" width="1680" height="965" />
+    <state width="1636" height="254" key="GridCell.Tab.0.right" timestamp="1607319084052">
+      <screen x="0" y="23" width="1680" height="949" />
     </state>
+    <state width="1636" height="254" key="GridCell.Tab.0.right/0.23.1680.949@0.23.1680.949" timestamp="1607319084052" />
     <state width="1638" height="254" key="GridCell.Tab.0.right/0.23.1680.960@0.23.1680.960" timestamp="1605849757404" />
     <state width="1638" height="254" key="GridCell.Tab.0.right/0.23.1680.965@0.23.1680.965" timestamp="1606086793350" />
     <state x="341" y="135" key="SettingsEditor" timestamp="1606373823995">
@@ -160,39 +191,30 @@
       <screen x="0" y="23" width="1680" height="952" />
     </state>
     <state x="100" y="123" width="1480" height="747" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.23.1680.952@0.23.1680.952" timestamp="1606186944865" />
-    <state x="100" y="123" width="1480" height="747" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606268798376">
-      <screen x="0" y="23" width="1680" height="952" />
+    <state x="100" y="122" width="1480" height="746" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1607324240965">
+      <screen x="0" y="23" width="1680" height="949" />
     </state>
+    <state x="100" y="122" width="1480" height="746" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1680.949@0.23.1680.949" timestamp="1607324240965" />
     <state x="100" y="123" width="1480" height="747" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1680.952@0.23.1680.952" timestamp="1606268798376" />
-    <state x="541" y="249" width="598" height="492" key="find.popup" timestamp="1606799432028">
-      <screen x="0" y="23" width="1680" height="954" />
+    <state x="100" y="123" width="1480" height="751" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1680.956@0.23.1680.956" timestamp="1606944971842" />
+    <state x="541" y="248" width="598" height="490" key="find.popup" timestamp="1607325481113">
+      <screen x="0" y="23" width="1680" height="949" />
     </state>
-    <state x="541" y="248" width="598" height="490" key="find.popup/0.23.1680.949@0.23.1680.949" timestamp="1606334420457" />
+    <state x="541" y="248" width="598" height="490" key="find.popup/0.23.1680.949@0.23.1680.949" timestamp="1607325481113" />
     <state x="541" y="249" width="598" height="490" key="find.popup/0.23.1680.952@0.23.1680.952" timestamp="1606379279874" />
     <state x="541" y="249" width="598" height="492" key="find.popup/0.23.1680.954@0.23.1680.954" timestamp="1606799432028" />
-    <state x="541" y="250" width="598" height="493" key="find.popup/0.23.1680.956@0.23.1680.956" timestamp="1606758920121" />
+    <state x="541" y="250" width="598" height="493" key="find.popup/0.23.1680.956@0.23.1680.956" timestamp="1607062386214" />
     <state x="541" y="251" width="598" height="490" key="find.popup/0.23.1680.960@0.23.1680.960" timestamp="1605850209769" />
-    <state x="505" y="230" width="670" height="678" key="search.everywhere.popup" timestamp="1606803833703">
-      <screen x="0" y="23" width="1680" height="954" />
+    <state x="505" y="229" width="670" height="674" key="search.everywhere.popup" timestamp="1607324954085">
+      <screen x="0" y="23" width="1680" height="949" />
     </state>
-    <state x="505" y="229" width="670" height="674" key="search.everywhere.popup/0.23.1680.949@0.23.1680.949" timestamp="1606334383751" />
+    <state x="505" y="229" width="670" height="674" key="search.everywhere.popup/0.23.1680.949@0.23.1680.949" timestamp="1607324954085" />
     <state x="505" y="230" width="670" height="676" key="search.everywhere.popup/0.23.1680.952@0.23.1680.952" timestamp="1606378649936" />
     <state x="505" y="230" width="670" height="678" key="search.everywhere.popup/0.23.1680.954@0.23.1680.954" timestamp="1606803833703" />
+    <state x="505" y="230" width="670" height="680" key="search.everywhere.popup/0.23.1680.956@0.23.1680.956" timestamp="1606972135073" />
     <state x="570" y="405" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1605836085245">
       <screen x="0" y="23" width="1680" height="960" />
     </state>
     <state x="570" y="405" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.23.1680.960@0.23.1680.960" timestamp="1605836085245" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src-flow/commands/changelog/index.js</url>
-          <line>70</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

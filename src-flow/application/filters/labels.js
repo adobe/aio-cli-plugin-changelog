@@ -11,7 +11,6 @@ class LabelsFilter implements FilterInterface {
     if (!this.labels.length) {
       return data
     }
-
     return data.filter((item:PullRequestData) => {
       if (!item.labels) {
         return true
