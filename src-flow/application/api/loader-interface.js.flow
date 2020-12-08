@@ -11,7 +11,7 @@ export interface LoaderInterface {
   execute(
     organization:string,
     repository:string,
-    from: number,
-    to: number,
+    from: Date,
+    to: Date,
   ):Promise<Array<PullRequestData>>
 }

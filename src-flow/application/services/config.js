@@ -1,16 +1,19 @@
+import type { PullRequestData } from '../api/data/pullrequest'
+
 const fileLoader = require('../../application/file-loader')
 const _ = require('lodash')
 
 class ConfigService {
   client: Object
   aioConfig: Object
+  githubRestClient: Object
   constructor (githubService:Object, aioConfig: Object) {
     this.githubRestClient = githubService.getRestClient()
     this.aioConfig = aioConfig
   }
 
   parseNamespace (namespace:string):Object {
-    const parsed = namespace.match(/(.*)\/(.*):(.*)/)
+    const parsed:Array<string> = namespace.match(/(.*)\/(.*):(.*)/) || []
     return {
       organization: parsed[1],
       repository: parsed[2],
@@ -18,7 +21,7 @@ class ConfigService {
     }
   }
 
-  async getInRepoConfigs (namespaces:Array, configPath:string = '/.github/changelog.json'):Object {
+  async getInRepoConfigs (namespaces:Array<string>, configPath:string = '/.github/changelog.json'):Object {
     const result = {}
     for (const namespace of namespaces) {
       const { organization, repository, branch } = this.parseNamespace(namespace)
@@ -35,7 +38,7 @@ class ConfigService {
     return result
   }
 
-  async getLocalConfigs (namespaces:Array, configPath?:string, pathType:string):Object {
+  async getLocalConfigs (namespaces:Array<string>, configPath?:string, pathType:string):Object {
     const localConfig = configPath
       ? fileLoader.load(configPath, pathType)
       : this.aioConfig.get('changelog') || {}
@@ -43,8 +46,8 @@ class ConfigService {
     return !namespaces.length ? localConfig : filterItems(localConfig, namespaces)
   }
 
-  async validate (config:Object):Array<string> {
-    const requiredFields = ['tag', 'loader.name', 'template']
+  async validate (config:Object):Promise<Array<string>> {
+    const requiredFields = ['tag', 'loader.name', 'output.template']
     const errors = []
     Object.keys(config).forEach(namespace => {
       const invalidFields = requiredFields.filter(field => !_.get(config[namespace], field))
@@ -61,9 +64,9 @@ class ConfigService {
   }
 }
 
-const filterItems = (localConfig:Object, namespace:Array):Object => {
+const filterItems = (localConfig:Object, namespaces:Array<string>):Object => {
   const res = {}
-  namespace.forEach(item => { res[item] = localConfig[item] })
+  namespaces.forEach(item => { res[item] = localConfig[item] })
   return res
 }
 

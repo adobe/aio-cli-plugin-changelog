@@ -1,6 +1,10 @@
 {
     "magento/magento2:2.4-develop": {
-        "path": "/Users/vzaets/develop/aio-cli-plugin-changelog",
+        "combine": {
+            "magento/inventory:1.2-develop": {
+                "tag": "1.1.6..1.2.2"
+            }
+        },
         "tag": "2.3.6..2.4.2",
         "loader": {
             "name": "PullRequest",
@@ -12,8 +16,10 @@
                     "name" : "labels",
                     "config": {
                         "Priority P0": ["Priority: P0"],
+                        "Priority P1": ["Priority: P1"],
                         "Priority P2": ["Priority: P2"],
-                        "Priority P3": ["Priority: P3"]
+                        "Priority P3": ["Priority: P3"],
+                        "Priority P4": ["Priority: P4"]
                     }
                 }
             }
@@ -21,7 +27,8 @@
         "output": {
             "override": false,
             "template": "pullrequest-issue",
-            "filename": "CHANGELOG.md"
+            "filename": "CHANGELOG.md",
+            "projectPath": "/Users/vzaets/develop/aio-cli-plugin-changelog"
         }
     }
 }

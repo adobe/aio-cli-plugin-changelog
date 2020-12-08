@@ -18,12 +18,28 @@ class NamespaceConfig {
     return _.get(this.data, 'loader.config.exclude') || {}
   }
 
-  getGroupName ():Object {
+  getGroupName ():string {
     return _.get(this.data, 'loader.config.groupBy.name')
   }
 
   getGroupConfig ():Object {
     return _.get(this.data, 'loader.config.groupBy.config')
+  }
+
+  getTemplate ():string {
+    return _.get(this.data, 'output.template')
+  }
+
+  getProjectPath ():string {
+    return _.get(this.data, 'path')
+  }
+
+  getFilename ():string {
+    return _.get(this.data, 'output.filename')
+  }
+
+  getCombined ():Object {
+    return _.get(this.data, 'combine')
   }
 }
 

@@ -37,7 +37,7 @@ class PullRequestLoader implements LoaderInterface {
     do {
       after = cursor ? `after:"${cursor}"` : ''
       query = `{
-        search(first: 1, query: "repo:${organization}/${repository} is:pr is:merged created:${sdate}..${edate}", type: ISSUE ${after}) {
+        search(first: 50, query: "repo:${organization}/${repository} is:pr is:merged created:${sdate}..${edate}", type: ISSUE ${after}) {
           nodes {
             ... on PullRequest {
               title

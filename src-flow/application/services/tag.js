@@ -1,3 +1,4 @@
+const _ = require('lodash')
 class TagService {
   githubService: Object
   restGithubClient: Object
@@ -6,7 +7,7 @@ class TagService {
     this.restGithubClient = githubService.getRestClient()
   }
 
-  async getTagDates (tag:string, org:string, repo:string, branch:string):Object {
+  async getTagDates (tag:string, org:string, repo:string):Object {
     const [start, end] = tag.split('..')
     const allRepositoryTags = await this.githubService.getAllTags(org, repo)
     const values = Object.values(allRepositoryTags)
@@ -15,7 +16,7 @@ class TagService {
 
     if (!allRepositoryTags[end]) {
       allRepositoryTags[end] = {
-        from: values[values.length - 1].to,
+        from: _.last(values).to,
         to: new Date()
       }
     }

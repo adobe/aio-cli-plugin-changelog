@@ -17,13 +17,14 @@ import type { PullRequestData } from '../../application/api/data/pullrequest.js.
 const { Command, flags } = require('@oclif/command')
 const loaderManager = require('../../application/loader-manager')
 const filterManager = require('../../application/filter-manager')
-const groupManager = require('../../application/groups-manager')
+const groupManager = require('../../application/group-manager')
+const templateManager = require('../../application/template-manager')
+const fileService = require('../../application/services/file')
 const aioConfig = require('@adobe/aio-lib-core-config')
 const ConfigService = require('../../application/services/config')
 const TagService = require('../../application/services/tag')
 const GithubService = require('../../application/services/github')
 const NamespaceConfig = require('../../application/models/namespace-config')
-const templatePR = require('../../application/templates/pullrequest-issue')
 const _ = require('lodash')
 
 class IndexCommand extends Command {
@@ -43,12 +44,23 @@ class IndexCommand extends Command {
 
     for (const np of Object.keys(commonConfig)) {
       const namespaceConfig = new NamespaceConfig(commonConfig[np])
+      const parsedNamespaces = _.mapValues({
+        ...namespaceConfig.getCombined(),
+        [np]: null
+      }, (data, np) => configService.parseNamespace(np))
+      console.log(parsedNamespaces)
+      return
+      [...Object.keys(combined), np].forEach(ns => {
+        parsedNamespaces[ns] = configService.parseNamespace(ns)
+      })
       const parsedNp = configService.parseNamespace(np)
+      const template = templateManager.get(namespaceConfig.getTemplate())
       const tagsRange = await tagService.getTagDates(
         namespaceConfig.getTag(),
         parsedNp.organization,
         parsedNp.repository
       )
+      Object.keys(combined).forEach()
       const Loader = loaderManager.get(namespaceConfig.getLoaderName())
       const filtersConfig = namespaceConfig.getFilters()
       const GroupByClass = namespaceConfig.getGroupName() ? groupManager.get(namespaceConfig.getGroupName()) : null
@@ -62,8 +74,8 @@ class IndexCommand extends Command {
         }),
         groupBy
       )
-      for (const tagName of Object.keys(tagsRange)) {
-        const data:PullRequestData = await dataLoader.execute(
+      for (const tagName of Object.keys(tagsRange).reverse()) {
+        const data:Array<PullRequestData> = await dataLoader.execute(
           parsedNp.organization,
           parsedNp.repository,
           tagsRange[tagName].from,
@@ -75,12 +87,12 @@ class IndexCommand extends Command {
           data: data.map(item => ({
             ...item,
             repository: parsedNp.repository,
-            organization: parsedNp.repository,
+            organization: parsedNp.organization,
             author: item.author.login
           }))
         }
       }
-      console.log(templatePR(result))
+      fileService.create(`${namespaceConfig.getProjectPath()}/${namespaceConfig.getFilename()}`, template(result))
     }
   }
 }

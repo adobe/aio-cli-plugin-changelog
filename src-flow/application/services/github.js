@@ -3,33 +3,11 @@ const { graphql } = require('@octokit/graphql')
 const Octokit = require('@octokit/rest').Octokit
 
 class Github {
-  graphqlClient: Object
-  restClient: Object
+  graphqlClient: graphql
+  restClient: Octokit
   constructor (token:string):void {
     this.graphqlClient = graphql.defaults({ headers: { authorization: `token ${token}` } })
     this.restClient = new Octokit({ auth: `token ${token}` })
-  }
-
-  async getTagCreationDate (tag:string, org:string, repo:string):Date {
-    const ref = await this.restClient.git.getRef({
-      owner: org,
-      repo,
-      ref: `tags/${tag}`
-    }).then(res => res.data)
-    const tagData = await this.restClient.git.getTag({
-      owner: org,
-      repo,
-      tag_sha: ref.object.sha
-    }).then(res => res.data)
-    return new Date(tagData.tagger.date)
-  }
-
-  async getFirstRepoCommitDate (branch: string, org:string, repo:string):Date {
-    let response = await this.graphqlClient(getFirstRepoCommitDateQuery(repo, org, branch, ''))
-    const endCursor = response.repository.ref.target.history.pageInfo.endCursor
-      .replace(' 0', ` ${response.repository.ref.target.history.totalCount - 2}`)
-    response = await this.graphqlClient(getFirstRepoCommitDateQuery(repo, org, branch, `after: "${endCursor}"`))
-    return new Date(response.repository.ref.target.history.nodes[0].committedDate)
   }
 
   async getAllTags (org:string, repo:string) {
@@ -88,30 +66,6 @@ class Github {
   getGraphQlClient () {
     return this.graphqlClient
   }
-}
-
-const getFirstRepoCommitDateQuery = (repo:string, org:string, branch:string, cursor:string):string => {
-  return `query {
-      repository(name: "${repo}", owner: "${org}") {
-        ref(qualifiedName: "refs/heads/${branch}") {
-          target {
-            ... on Commit {
-              history(first: 1, ${cursor}) {
-                nodes {
-                  oid
-                  message
-                  committedDate
-                }
-                totalCount
-                pageInfo {
-                  endCursor
-                }
-              }
-            }
-          }
-        }
-      }
-    }`
 }
 
 module.exports = Github

@@ -1,4 +1,5 @@
 const _ = require('lodash')
+const formatFns = require('date-fns/format')
 
 module.exports = (data:Object):string => {
   let result = ''
@@ -16,13 +17,13 @@ module.exports = (data:Object):string => {
   return result
 }
 
-const tagTemplate = (tag:string, creationDate:string) => `
-  ## ${tag}(${creationDate})
+const tagTemplate = (tag:string, creationDate:Date) => `\n
+  ${tag} (${formatFns(creationDate.getTime(), 'yyyy-MM-dd')})
   ============= \n
 `
 const contributionTypeTemplate = (contributionType:string) => `
   ### ${contributionType} \n
 `
 const contributionTemplate = (org:string, repo:string, number:number, description:string, author:string) => `
-  * [${org}/${repo}#${number}](https://github.com/${org}/${repo}/pull/${number}) -- ${description} by @${author} \n
-`
+  * [${org}/${repo}#${number}](https://github.com/${org}/${repo}/pull/${number})
+  -- ${description} by [@${author}](https://github.com/${author})`

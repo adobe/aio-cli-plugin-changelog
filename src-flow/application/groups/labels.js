@@ -2,8 +2,8 @@ import type { PullRequestData } from '../api/data/pullrequest.js.flow'
 const _ = require('lodash')
 
 class LabelsGroup {
-    map: Array<string>
-    constructor (map:Object<string>) {
+    map: Object
+    constructor (map:Object) {
       this.map = map
     }
 
@@ -11,10 +11,13 @@ class LabelsGroup {
       if (!Object.keys(this.map).length) {
         return data
       }
+
       return data.map(item => {
         const temp = []
         Object.keys(this.map).forEach(type => {
-          if (this.map[type].filter(label => _.includes(item.labels.nodes, label))) {
+          if (
+            this.map[type].filter(label => _.includes(item.labels.nodes.map(data => data.name), label)).length
+          ) {
             temp.push(type)
           }
         })
