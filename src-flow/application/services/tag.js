@@ -8,7 +8,8 @@ class TagService {
   }
 
   async getTagDates (tag:string, org:string, repo:string):Object {
-    const [start, end] = tag.split('..')
+    const [start, right] = tag.split('..')
+    const [end, sha] = right.split(':SHA:')
     const allRepositoryTags = await this.githubService.getAllTags(org, repo)
     const values = Object.values(allRepositoryTags)
     const startRange = allRepositoryTags[start] || values[0]
@@ -17,14 +18,17 @@ class TagService {
     if (!allRepositoryTags[end]) {
       allRepositoryTags[end] = {
         from: _.last(values).to,
-        to: new Date()
+        to: !sha
+          ? new Date()
+          : await this.restGithubClient.git.getCommit({ owner: org, repo, commit_sha: sha })
+            .then(res => _.get(res, 'data.committer.date') ? new Date(_.get(res, 'data.committer.date')) : null)
       }
     }
     const endRange = allRepositoryTags[end]
     const filtered = Object.keys(allRepositoryTags).filter(tagname =>
       startRange.from <= allRepositoryTags[tagname].from && endRange.to >= allRepositoryTags[tagname].to
     )
-    filtered.forEach(tagname => { result[tagname] = allRepositoryTags[tagname] })
+    filtered.reverse().forEach(tagname => { result[tagname] = allRepositoryTags[tagname] })
     return result
   }
 }

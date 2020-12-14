@@ -31,7 +31,7 @@ class NamespaceConfig {
   }
 
   getProjectPath ():string {
-    return _.get(this.data, 'path')
+    return _.get(this.data, 'output.projectPath')
   }
 
   getFilename ():string {

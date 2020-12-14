@@ -23,6 +23,7 @@ const fileService = require('../../application/services/file')
 const aioConfig = require('@adobe/aio-lib-core-config')
 const ConfigService = require('../../application/services/config')
 const TagService = require('../../application/services/tag')
+const asyncService = require('../../application/services/async')
 const GithubService = require('../../application/services/github')
 const NamespaceConfig = require('../../application/models/namespace-config')
 const _ = require('lodash')
@@ -37,30 +38,22 @@ class IndexCommand extends Command {
     const inRepoConfig = await configService.getInRepoConfigs(Object.keys(localConfig))
     const commonConfig = _.merge(inRepoConfig, localConfig)
     const commonConfigErrors = await configService.validate(commonConfig)
-    const result = {}
     if (commonConfigErrors.length) {
       throw new Error(commonConfigErrors.join('\n'))
     }
 
     for (const np of Object.keys(commonConfig)) {
       const namespaceConfig = new NamespaceConfig(commonConfig[np])
-      const parsedNamespaces = _.mapValues({
-        ...namespaceConfig.getCombined(),
-        [np]: null
-      }, (data, np) => configService.parseNamespace(np))
-      console.log(parsedNamespaces)
-      return
-      [...Object.keys(combined), np].forEach(ns => {
-        parsedNamespaces[ns] = configService.parseNamespace(ns)
-      })
-      const parsedNp = configService.parseNamespace(np)
       const template = templateManager.get(namespaceConfig.getTemplate())
-      const tagsRange = await tagService.getTagDates(
-        namespaceConfig.getTag(),
-        parsedNp.organization,
-        parsedNp.repository
-      )
-      Object.keys(combined).forEach()
+      const namespacesTags = { [np]: { tag: namespaceConfig.getTag() }, ...namespaceConfig.getCombined() }
+      const parsedNamespaces = _.mapValues(namespacesTags, (data, np) => configService.parseNamespace(np))
+      const namespacesTagsRange = await asyncService.mapValuesAsync(parsedNamespaces, async (data, np) => {
+        return await tagService.getTagDates(
+          namespacesTags[np].tag,
+          data.organization,
+          data.repository
+        )
+      })
       const Loader = loaderManager.get(namespaceConfig.getLoaderName())
       const filtersConfig = namespaceConfig.getFilters()
       const GroupByClass = namespaceConfig.getGroupName() ? groupManager.get(namespaceConfig.getGroupName()) : null
@@ -74,25 +67,26 @@ class IndexCommand extends Command {
         }),
         groupBy
       )
-      for (const tagName of Object.keys(tagsRange).reverse()) {
-        const data:Array<PullRequestData> = await dataLoader.execute(
-          parsedNp.organization,
-          parsedNp.repository,
-          tagsRange[tagName].from,
-          tagsRange[tagName].to
-        )
-
-        result[tagName] = {
-          createdAt: tagsRange[tagName].to,
-          data: data.map(item => ({
-            ...item,
-            repository: parsedNp.repository,
-            organization: parsedNp.organization,
-            author: item.author.login
-          }))
-        }
-      }
-      fileService.create(`${namespaceConfig.getProjectPath()}/${namespaceConfig.getFilename()}`, template(result))
+      const rs = await asyncService.mapValuesAsync(namespacesTagsRange, async (data, np) => {
+        return await asyncService.mapValuesAsync(data, async (tagsRange, key) => {
+          const data:Array<PullRequestData> = await dataLoader.execute(
+            parsedNamespaces[np].organization,
+            parsedNamespaces[np].repository,
+            tagsRange.from,
+            tagsRange.to
+          )
+          return {
+            createdAt: tagsRange.to,
+            data: data.map(item => ({
+              ...item,
+              repository: parsedNamespaces[np].repository,
+              organization: parsedNamespaces[np].organization,
+              author: item.author.login
+            }))
+          }
+        })
+      })
+      fileService.create(`${namespaceConfig.getProjectPath()}/${namespaceConfig.getFilename()}`, template(rs))
     }
   }
 }

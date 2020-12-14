@@ -5,7 +5,7 @@
                 "tag": "1.1.6..1.2.2"
             }
         },
-        "tag": "2.3.6..2.4.2",
+        "tag": "2.3.6..2.4.2:SHA:2bd486b29c1da027504e42f2541e7fcc84ad45a4",
         "loader": {
             "name": "PullRequest",
             "config": {
