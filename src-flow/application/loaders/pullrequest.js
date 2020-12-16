@@ -83,8 +83,7 @@ class PullRequestLoader implements LoaderInterface {
     result = result.filter((pr) => pr.author &&
         pr.author.login.search(regexpFirst) === -1 &&
         pr.author.login.search(regexpSecond) === -1 &&
-        pr.author.login.search(regexpThird) === -1 &&
-        pr.author.__typename === 'User'
+        pr.author.login.search(regexpThird) === -1
     )
 
     for (const filter of this.filters) {

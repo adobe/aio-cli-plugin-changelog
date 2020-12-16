@@ -12,8 +12,15 @@ class TagService {
     const [end, sha] = right.split(':SHA:')
     const allRepositoryTags = await this.githubService.getAllTags(org, repo)
     const values = Object.values(allRepositoryTags)
-    const startRange = allRepositoryTags[start] || values[0]
+    const keys = Object.keys(allRepositoryTags)
     const result = {}
+    let startRange
+
+    if (start === 'latest') {
+      startRange = allRepositoryTags[keys[keys.length - 1]]
+    } else {
+      startRange = allRepositoryTags[start] || values[0]
+    }
 
     if (!allRepositoryTags[end]) {
       allRepositoryTags[end] = {
