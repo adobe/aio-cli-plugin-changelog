@@ -23,15 +23,14 @@ class Index {
   async getConfig (repositories:Array<string>, configPath:string, pathType:string) {
     const localConfig = await this.configService.getLocalConfigs(repositories, configPath, pathType)
     const inRepoConfig = await this.configService.getInRepoConfigs(Object.keys(localConfig))
-    const commonConfig = _.merge(inRepoConfig, localConfig)
-    const commonConfigErrors = await this.configService.validate(commonConfig)
-    if (commonConfigErrors.length) {
-      throw new Error(commonConfigErrors.join('\n'))
-    }
-    return commonConfig
+    return _.merge(inRepoConfig, localConfig)
   }
 
   async execute (config:Object) {
+    const commonConfigErrors = await this.configService.validate(config)
+    if (commonConfigErrors.length) {
+      throw new Error(commonConfigErrors.join('\n'))
+    }
     return await asyncService.mapValuesAsync(config, async (npConfig, np) => {
       const namespaceConfig = new NamespaceConfig(npConfig)
       const namespacesTags = { [np]: { tag: namespaceConfig.getTag() }, ...namespaceConfig.getCombined() }
