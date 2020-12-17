@@ -1,6 +1,4 @@
-import type { LoaderInterface } from '../api/loader-interface.js.flow'
-import type { FilterInterface } from '../api/filter-interface.js.flow'
-import type { PullRequestData } from '../api/data/pullrequest.js.flow'
+
 const aioConfig = require('@adobe/aio-lib-core-config')
 const _ = require('lodash')
 const GithubService = require('../services/github')
@@ -14,13 +12,13 @@ const filterManager = require('../../application/filter-manager')
 const groupManager = require('../../application/group-manager')
 
 class Index {
-  constructor (token:string) {
+  constructor (token) {
     this.githubService = new GithubService(token || aioConfig.get('GITHUB_TOKEN'))
     this.configService = new ConfigService(this.githubService, aioConfig)
     this.tagService = new TagService(this.githubService)
   }
 
-  async getConfig (repositories:Array<string>, configPath:string, pathType:string) {
+  async getConfig (repositories, configPath, pathType) {
     const localConfig = await this.configService.getLocalConfigs(repositories, configPath, pathType)
     const inRepoConfig = await this.configService.getInRepoConfigs(Object.keys(localConfig))
     const commonConfig = _.merge(inRepoConfig, localConfig)
@@ -31,7 +29,7 @@ class Index {
     return commonConfig
   }
 
-  async execute (config:Object) {
+  async execute (config) {
     return await asyncService.mapValuesAsync(config, async (npConfig, np) => {
       const namespaceConfig = new NamespaceConfig(npConfig)
       const namespacesTags = { [np]: { tag: namespaceConfig.getTag() }, ...namespaceConfig.getCombined() }
@@ -47,11 +45,11 @@ class Index {
       const filtersConfig = namespaceConfig.getFilters()
       const GroupByClass = namespaceConfig.getGroupName() ? groupManager.get(namespaceConfig.getGroupName()) : null
       const groupBy = GroupByClass ? new GroupByClass(namespaceConfig.getGroupConfig()) : null
-      const dataLoader:LoaderInterface = new Loader(
+      const dataLoader = new Loader(
         this.githubService,
-        Object.keys(filtersConfig).map((ftr:string) => {
+        Object.keys(filtersConfig).map((ftr) => {
           const FtrClass = filterManager.get(ftr)
-          const filter: FilterInterface = new FtrClass(filtersConfig[ftr])
+          const filter = new FtrClass(filtersConfig[ftr])
           return filter
         }),
         groupBy
@@ -60,7 +58,7 @@ class Index {
       return templateManager.get(namespaceConfig.getTemplate())(
         await asyncService.mapValuesAsync(namespacesTagsRange, async (data, np) => {
           return await asyncService.mapValuesAsync(data, async (tagsRange) => {
-            const data:Array<PullRequestData> = await dataLoader.execute(
+            const data = await dataLoader.execute(
               parsedNamespaces[np].organization,
               parsedNamespaces[np].repository,
               tagsRange.from,
