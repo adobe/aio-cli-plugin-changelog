@@ -13,7 +13,10 @@ governing permissions and limitations under the License.
 aio-cli-plugin-changelog
 =====================
 
-Config Plugin for the Adobe I/O CLI
+
+**aio-cli-plugin-changelog** is an plugin for Adobe I/O CLI that provides possibility to generate changelog file based on release data in automatic, system agnostic way. 
+
+
 
 <!-- toc -->
 * [Usage](#usage)
@@ -137,3 +140,12 @@ All loaders are located in `src/templates` folder.
   }
 }
 ```
+## Maintainers and Contributors
+
+This project is maintained by [Open Contribution Office](https://wiki.corp.adobe.com/display/DMSArchitecture/Open+Contribution+Office).
+
+## Contact Us
+
+**Slack**: [#devex-open-contribution-office](https://magento.slack.com/archives/C018Z6CB57U)
+
+**Mail**: [devex-open-contribution-office@adobe.com](mailto:devex-open-contribution-office@adobe.com)
