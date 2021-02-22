@@ -19,7 +19,7 @@ Config Plugin for the Adobe I/O CLI
 * [Usage](#usage)
 * [Commands](#commands)
 <!-- tocstop -->
-# Usage
+# Installation
 ```
 $ aio plugins:install -g @adobe/aio-cli-plugin-changelog
 $ # OR
@@ -28,7 +28,7 @@ $ aio changelog --help...
 $ aio config set <GITHUB_TOKEN>
 ```
 
-# Installation
+# Commands
 <!-- commands -->
 * [`aio changelog`](#aio-changelog)
 
@@ -50,7 +50,66 @@ EXAMPLE
 ```
 <!-- commandsstop -->
 
-### Configuration example:
+### Extensibility
+Adobe Changelog Generator tool provide possibility to customize or create your own set of services, such as:
+* [`Data loaders`](###data-loaders)
+* [`Filters`](###filters)
+* [`Templates`](###templates)
+* [`Groups`](###groups)
+
+###Data loaders:
+Data loaders are responsible for uploading data from Github. 
+The Adobe Changelog Generator tool provide the list of loaders. 
+All loaders are located in `src/loaders` folder.
+
+**Customization**:
+* Implement loader `src-flow/application/api/loader-interface.js.flow` interface with custom functionality
+* Place file with custom functionality in `src/loaders` folder
+* Use filename as a value in config.
+    Example: 
+    ```
+        "loader": {
+            "name: "<customFileName>"
+        }
+    ```
+
+###Filters:
+Filters are responsible for filter data received from loader. 
+The Adobe Changelog Generator tool provide the list of filters. 
+All loaders are located in `src/filters` folder.
+
+**Customization**:
+* Implement loader `src-flow/application/api/filter-interface.js.flow` interface with custom functionality
+* Place file with custom functionality in `src/filters` folder
+* Use filename as a value in config.
+
+###Groups:
+Groups are responsible for grouping data received from loader. 
+The Adobe Changelog Generator tool provide the list of groups. 
+All loaders are located in `src/groups` folder.
+
+**Customization**:
+* Place file with custom functionality in `src/groups` folder
+* Use filename as a value in config.
+
+    Example: 
+    ```
+        "groupBy": {
+            "name: "<customFileName>"
+        }
+    ```
+
+###Templates:
+Templates are responsible for view of resulting `Changelog.md` file. 
+The Adobe Changelog Generator tool provide the list of templates. 
+All loaders are located in `src/templates` folder.
+
+**Customization**:
+* Place file with custom template in `src/templates` folder
+* Use filename as a value in config.
+
+
+# Configuration example:
 <!-- configuration -->
 ```
 {
