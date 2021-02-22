@@ -57,7 +57,7 @@ Adobe Changelog Generator tool provide possibility to customize or create your o
 * [`Templates`](###templates)
 * [`Groups`](###groups)
 
-###Data loaders:
+### Data loaders:
 Data loaders are responsible for uploading data from Github. 
 The Adobe Changelog Generator tool provide the list of loaders. 
 All loaders are located in `src/loaders` folder.
@@ -73,7 +73,7 @@ All loaders are located in `src/loaders` folder.
         }
     ```
 
-###Filters:
+### Filters:
 Filters are responsible for filter data received from loader. 
 The Adobe Changelog Generator tool provide the list of filters. 
 All loaders are located in `src/filters` folder.
@@ -83,7 +83,7 @@ All loaders are located in `src/filters` folder.
 * Place file with custom functionality in `src/filters` folder
 * Use filename as a value in config.
 
-###Groups:
+### Groups:
 Groups are responsible for grouping data received from loader. 
 The Adobe Changelog Generator tool provide the list of groups. 
 All loaders are located in `src/groups` folder.
@@ -99,7 +99,7 @@ All loaders are located in `src/groups` folder.
         }
     ```
 
-###Templates:
+### Templates:
 Templates are responsible for view of resulting `Changelog.md` file. 
 The Adobe Changelog Generator tool provide the list of templates. 
 All loaders are located in `src/templates` folder.
