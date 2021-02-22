@@ -22,11 +22,13 @@ class IndexCommand extends Command {
     const config = await generateController.getConfig(namespace, flags['config-path'], flags['path-type'])
     const data = await generateController.execute(config)
     for (const np of Object.keys(config)) {
+      console.log(`Generation Changelog for ${np}...`)
       const namespace = new NamespaceConfig(config[np])
       fileService.create(
         `${namespace.getProjectPath()}/${namespace.getFilename()}`,
         data[np]
       )
+      console.log(`Changelog for ${np} is generated and available by the path: ${namespace.getProjectPath()}/${namespace.getFilename()}`)
     }
   }
 }
@@ -49,7 +51,7 @@ IndexCommand.flags = {
 
 IndexCommand.description = 'Changelog generation tool'
 IndexCommand.examples = [
-  '$ aio changelog:generate'
+  '$ aio changelog'
 ]
 
 module.exports = IndexCommand

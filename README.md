@@ -18,7 +18,6 @@ Config Plugin for the Adobe I/O CLI
 <!-- toc -->
 * [Usage](#usage)
 * [Commands](#commands)
-* [Configuration example](#configuration)
 <!-- tocstop -->
 # Usage
 ```
@@ -29,22 +28,27 @@ $ aio changelog --help...
 $ aio config set <GITHUB_TOKEN>
 ```
 
-# Commands
+# Installation
 <!-- commands -->
-* [`aio changelog:generate`](#aio changelog:generate)
+* [`aio changelog`](#aio-changelog)
 
-## `aio changelog:generate`
+## `aio changelog`
 
 ```
+Changelog generation tool
+
 USAGE
-  $ aio changelog:generate
+  $ aio changelog
 
 OPTIONS
-  -c, --config-path  Path to local config   
-  -t, --type-path    Local config path type (Absolute or Relative)
-  -n, --namespace    Namespaces, example: organization/repository:branch (Multiple param)
-  --verbose     show all config values
+  -c, --config-path=config-path      Local config path
+  -n, --namespace=namespace          [default: ] Namespace, example: organization/repository:branch
+  -t, --path-type=absolute|relative  [default: absolute] Local config path type
+
+EXAMPLE
+  $ aio changelog
 ```
+<!-- commandsstop -->
 
 ### Configuration example:
 <!-- configuration -->
