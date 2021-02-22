@@ -52,10 +52,10 @@ EXAMPLE
 
 ### Extensibility
 Adobe Changelog Generator tool provide possibility to customize or create your own set of services, such as:
-* [`Data loaders`](###data-loaders)
-* [`Filters`](###filters)
-* [`Templates`](###templates)
-* [`Groups`](###groups)
+* [`Data loaders`](#data-loaders)
+* [`Filters`](#filters)
+* [`Templates`](#templates)
+* [`Groups`](#groups)
 
 ### Data loaders:
 Data loaders are responsible for uploading data from Github. 
