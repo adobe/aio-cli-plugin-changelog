@@ -18,9 +18,8 @@ class IndexCommand extends Command {
   async run () {
     const { flags, flags: { namespace } } = this.parse(IndexCommand)
     const token = flags.token || aioConfig.get('GITHUB_TOKEN')
-    const adobeChangelogGenerator = new AdobeChangelogGenerator(token)
-    const config = await adobeChangelogGenerator.getConfig(namespace, flags['config-path'], flags['path-type'])
-    await adobeChangelogGenerator.execute(config)
+    const adobeChangelogGenerator = new AdobeChangelogGenerator(token, flags['config-path'], flags['path-type'])
+    await adobeChangelogGenerator.generate(namespace)
   }
 }
 
