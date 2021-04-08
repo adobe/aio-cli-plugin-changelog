@@ -36,6 +36,12 @@ IndexCommand.flags = {
     description: 'Local config path type',
     options: ['absolute', 'relative'],
     default: 'absolute'
+  }),
+  'output-format': flags.string({
+    char: 'o',
+    description: 'Changelog output format',
+    options: ['absolute', 'relative'],
+    default: 'absolute'
   })
 }
 
