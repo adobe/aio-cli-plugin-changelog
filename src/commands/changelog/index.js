@@ -39,9 +39,7 @@ IndexCommand.flags = {
   }),
   'output-format': flags.string({
     char: 'o',
-    description: 'Changelog output format',
-    options: ['absolute', 'relative'],
-    default: 'absolute'
+    description: 'Changelog output format'
   })
 }
 
