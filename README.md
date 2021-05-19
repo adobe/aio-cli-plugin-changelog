@@ -19,8 +19,9 @@ aio-cli-plugin-changelog
 
 
 <!-- toc -->
-* [Usage](#usage)
+* [Installation](#installation)
 * [Commands](#commands)
+* [Configuration example:](#configuration-example)
 <!-- tocstop -->
 # Installation
 ```
@@ -37,6 +38,8 @@ $ aio config set <GITHUB_TOKEN>
 
 ## `aio changelog`
 
+Changelog generation tool
+
 ```
 Changelog generation tool
 
@@ -46,6 +49,7 @@ USAGE
 OPTIONS
   -c, --config-path=config-path      Local config path
   -n, --namespace=namespace          [default: ] Namespace, example: organization/repository:branch
+  -o, --output-format=output-format  Changelog output format
   -t, --path-type=absolute|relative  [default: absolute] Local config path type
 
 EXAMPLE
