@@ -11,7 +11,7 @@ governing permissions and limitations under the License.
 
 const { Command, flags } = require('@oclif/command')
 // eslint-disable-next-line node/no-extraneous-require
-const AdobeChangelogGenerator = require('adobe-changelog-generator')
+const AdobeChangelogGenerator = require('@adobe/changelog-generator')
 const aioConfig = require('@adobe/aio-lib-core-config')
 
 class IndexCommand extends Command {
