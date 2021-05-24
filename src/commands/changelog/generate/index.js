@@ -18,34 +18,24 @@ class IndexCommand extends Command {
   async run () {
     const { flags, flags: { namespace } } = this.parse(IndexCommand)
     const token = flags.token || aioConfig.get('GITHUB_TOKEN')
-    const adobeChangelogGenerator = new AdobeChangelogGenerator(token, flags['config-path'], flags['path-type'])
+    const adobeChangelogGenerator = new AdobeChangelogGenerator(token, flags['config'])
     await adobeChangelogGenerator.generate(namespace)
   }
 }
 
 IndexCommand.flags = {
-  'config-path': flags.string({ char: 'c', description: 'Local config path' }),
-  namespace: flags.string({
+  'config': flags.string({ char: 'c', description: 'Path to local machine config' }),
+  namespaces: flags.string({
     char: 'n',
-    description: 'Namespace, example: organization/repository:branch',
+    description: 'Generate changelog for specific namespace, example: organization/repository:branch',
     multiple: true,
     default: []
-  }),
-  'path-type': flags.string({
-    char: 't',
-    description: 'Local config path type',
-    options: ['absolute', 'relative'],
-    default: 'absolute'
-  }),
-  'output-format': flags.string({
-    char: 'o',
-    description: 'Changelog output format'
   })
 }
 
 IndexCommand.description = 'Changelog generation tool'
 IndexCommand.examples = [
-  '$ aio changelog'
+  '$ aio changelog:generate'
 ]
 
 module.exports = IndexCommand
