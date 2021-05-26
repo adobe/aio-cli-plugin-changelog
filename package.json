@@ -4,7 +4,7 @@
   "dependencies": {
     "@adobe/aio-lib-core-config": "^2.0.0",
     "@adobe/aio-lib-core-logging": "^1.1.0",
-    "@adobe/changelog-generator": "^1.0.3-1",
+    "@adobe/changelog-generator": "^1.0.3-3",
     "@oclif/command": "^1.8.0",
     "@octokit/graphql": "^4.5.7",
     "@octokit/rest": "^18.0.9"
