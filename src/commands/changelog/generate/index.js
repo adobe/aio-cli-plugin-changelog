@@ -13,13 +13,31 @@ const { Command, flags } = require('@oclif/command')
 // eslint-disable-next-line node/no-extraneous-require
 const AdobeChangelogGenerator = require('@adobe/changelog-generator')
 const aioConfig = require('@adobe/aio-lib-core-config')
+const {cli} = require('cli-ux')
+const startGeneration = `
+==========================
+Start changelog generation
+==========================
+`;
+const endGeneration = `
+=============================
+Changelog generation finished
+=============================
+`;
+const generationMessage = (data) => `
+Changelog for "${data.namespace}" is generated.
+See "${data.path}${data.filename}"
+`;
 
 class IndexCommand extends Command {
   async run () {
     const { flags, flags: { namespace } } = this.parse(IndexCommand)
     const token = flags.token || aioConfig.get('GITHUB_TOKEN')
     const adobeChangelogGenerator = new AdobeChangelogGenerator(token, flags['config'])
-    await adobeChangelogGenerator.generate(namespace)
+    cli.action.start(startGeneration);
+    const generating = await adobeChangelogGenerator.generate(namespace);
+    generating.forEach(promise => promise.then(data => {cli.action.start(generationMessage(data))}));
+    Promise.all(generating).then(() => cli.action.stop(endGeneration));
   }
 }
 
