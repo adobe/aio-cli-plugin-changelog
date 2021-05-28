@@ -32,8 +32,9 @@ See "${data.path}${data.filename}"
 class IndexCommand extends Command {
   async run () {
     const { flags, flags: { namespace } } = this.parse(IndexCommand)
-    const token = flags.token || aioConfig.get('GITHUB_TOKEN')
-    const adobeChangelogGenerator = new AdobeChangelogGenerator(token, flags['config'])
+    const token = flags.token || aioConfig.get('GITHUB_TOKEN');
+    const githubUrl = flags['github-url'] || aioConfig.get('GITHUB_URL') || 'https://api.github.com';
+    const adobeChangelogGenerator = new AdobeChangelogGenerator(token, githubUrl, flags['config'])
     cli.action.start(startGeneration);
     const generating = await adobeChangelogGenerator.generate(namespace);
     generating.forEach(promise => promise.then(data => {cli.action.start(generationMessage(data))}));
