@@ -3,7 +3,7 @@ Adobe Changelog Generator
 
 **Adobe Changelog Generator**  is the core package that is used to generate a changelog file.
 <!-- toc -->
-* [Installation](#installation)
+* [Installation and update](#installation)
 * [Commands](#commands)
 <!-- tocstop -->
 
@@ -19,6 +19,12 @@ $ aio discover -i
 $ aio changelog --help...
 $ aio config set <GITHUB_TOKEN>
 ```
+
+### Update
+Please use the latest version of the plugin. 
+Use command `aio plugins` to see plugins that are outdated
+Use command `aio plugins:update` for update plugins to latest stable version
+
 
 # Commands
 <!-- commands -->
