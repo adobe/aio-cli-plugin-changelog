@@ -21,9 +21,9 @@ $ aio config set <GITHUB_TOKEN>
 ```
 
 ### Update
-Please use the latest version of the plugin. 
-Use command `aio plugins` to see plugins that are outdated
-Use command `aio plugins:update` for update plugins to latest stable version
+Please use the latest version of the plugin.   
+Use command `aio plugins` to see plugins that are outdated.  
+Use command `aio plugins:update` for update plugins to latest stable version.  
 
 
 # Commands
