@@ -29,7 +29,7 @@ Use command `aio plugins:update` for update plugins to latest stable version.
 # Commands
 <!-- commands -->
 * [`aio changelog:generate`](#aio-changeloggenerate)
-* [`aio changelog:generate-config-sample`](#aio-generate-config-sample)
+* [`aio changelog:generate-config-sample`](#aio-changeloggenerate-config-sample)
 
 ## `aio changelog:generate`
 
@@ -49,8 +49,7 @@ OPTIONS
 
 ```
 
-## Generate config sample
-
+## `aio changelog:generate-config-sample`
 
 ```
 USAGE
