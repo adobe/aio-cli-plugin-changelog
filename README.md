@@ -3,7 +3,7 @@ Adobe Changelog Generator
 
 **Adobe Changelog Generator**  is the core package that is used to generate a changelog file.
 <!-- toc -->
-* [Installation and update](#installation)
+* [Installation](#installation)
 * [Commands](#commands)
 <!-- tocstop -->
 
@@ -29,6 +29,7 @@ Use command `aio plugins:update` for update plugins to latest stable version.
 # Commands
 <!-- commands -->
 * [`aio changelog:generate`](#aio-changeloggenerate)
+* [`aio changelog:generate-config-sample`](#aio-changeloggenerate-config-sample)
 
 ## `aio changelog:generate`
 
@@ -48,6 +49,24 @@ OPTIONS
 
 EXAMPLE
   $ aio changelog:generate
+```
+
+## `aio changelog:generate-config-sample`
+
+Generate config sample for Changelog Generation application
+
+```
+Generate config sample for Changelog Generation application
+
+USAGE
+  $ aio changelog:generate-config-sample
+
+OPTIONS
+  -p, --path=path        Path to generated sample file
+  -t, --type=short|long  [default: short] Type of config sample
+
+EXAMPLE
+  $ aio changelog:generate-config-sample
 ```
 <!-- commandsstop -->
 
