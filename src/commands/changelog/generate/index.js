@@ -43,7 +43,7 @@ class IndexCommand extends Command {
 }
 
 IndexCommand.flags = {
-  'config': flags.string({ char: 'c', description: 'Path to local machine config' }),
+  'config': flags.string({ char: 'c', description: 'Path to the configuration located on your local machine' }),
   namespaces: flags.string({
     char: 'n',
     description: 'Generate changelog for specific namespace, example: organization/repository:branch',
