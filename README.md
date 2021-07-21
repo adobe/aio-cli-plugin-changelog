@@ -44,7 +44,7 @@ USAGE
   $ aio changelog:generate
 
 OPTIONS
-  -c, --config=config          Path to the configuration located on your local machine
+  -c, --config=config          (required) Path to the configuration located on your local machine
 
   -n, --namespaces=namespaces  [default: ] Generate changelog for specific namespace, example:
                                organization/repository:branch
