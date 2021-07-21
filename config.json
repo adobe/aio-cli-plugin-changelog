@@ -1,74 +1,8 @@
 {
-    "magento/magento2:2.4-develop": {
-        "combine": {
-            "magento/inventory:1.2-develop": {
-                "tag": "1.1.6..1.2.2"
-            }
-        },
-        "tag": "2.3.6..2.4.2:SHA:2bd486b29c1da027504e42f2541e7fcc84ad45a4",
+    "adobe/adobe-changelog-generator:master": {
+        "releaseLine": "current..now",
         "loader": {
-            "name": "PullRequest",
-            "config": {
-                "exclude": {
-                    "labels": ["Priority: P2"]
-                },
-                "groupBy": {
-                    "name" : "labels",
-                    "config": {
-                        "Priority P0": ["Priority: P0"],
-                        "Priority P1": ["Priority: P1"],
-                        "Priority P2": ["Priority: P2"],
-                        "Priority P3": ["Priority: P3"],
-                        "Priority P4": ["Priority: P4"]
-                    }
-                }
-            }
-        },
-        "output": {
-            "override": false,
-            "template": "pullrequest-issue",
-            "filename": "CHANGELOG.md",
-            "projectPath": "/Users/vzaets/develop/aio-cli-plugin-changelog"
-        }
-    },
-    "magento/inventory:1.2-develop": {
-        "tag": "1.1.6..1.2.2",
-        "loader": {
-            "name": "PullRequest",
-            "config": {
-                "filters": [
-                    {
-                        "name": 'label',
-                        "operator": 'NOT IN/IN',
-                        "value": ['value']
-                    },
-                    {
-                        "name": 'team',
-                        "operator": 'NOT IN/IN',
-                        "value": ['value']
-                    }
-                ],
-                "exclude": {
-                    "labels": ["Priority: P2"],
-                    "team": ['employee']
-                },
-                "groupBy": {
-                    "name" : "labels",
-                    "config": {
-                        "Priority P0": ["Priority: P0"],
-                        "Priority P1": ["Priority: P1"],
-                        "Priority P2": ["Priority: P2"],
-                        "Priority P3": ["Priority: P3"],
-                        "Priority P4": ["Priority: P4"]
-                    }
-                }
-            }
-        },
-        "output": {
-            "override": false,
-            "template": "pullrequest-issue",
-            "filename": "CHANGELOG-1.md",
-            "projectPath": "/Users/vzaets/develop/aio-cli-plugin-changelog"
+            "name": "pullrequest"
         }
     }
 }
