@@ -12,9 +12,6 @@
             }
         ]
     },
-    "plugins": [
-        "flowtype"
-    ],
     "settings": {
         "jsdoc": {
             "ignorePrivate": true
